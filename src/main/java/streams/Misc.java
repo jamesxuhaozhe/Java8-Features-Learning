@@ -31,6 +31,10 @@ public class Misc {
         return (int) cars.stream().map(Car::getCountry).distinct().count();
     }
 
+    public void testForEach() {
+        cars.stream().forEach(System.out::println);
+    }
+
     public static void main(final String[] args) {
         DealerShip dealerShip = new DealerShip();
         Misc misc = new Misc(dealerShip.getInventory());
@@ -38,5 +42,6 @@ public class Misc {
         System.out.println(misc.getMinYear() + "\n");
         System.out.println(misc.getMaxYear() + "\n");
         System.out.println(misc.getDistinctCountries() + "\n");
+        misc.testForEach();
     }
 }
