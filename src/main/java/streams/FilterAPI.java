@@ -22,7 +22,7 @@ public class FilterAPI {
     }
 
     public List<Car> getForeignCars() {
-        return cars.stream().filter(car -> car.isForeign() == true).collect(toList());
+        return cars.stream().filter(car -> car.isForeign()).collect(toList());
     }
 
     public List<Car> getJapaneseCars() {
@@ -30,7 +30,7 @@ public class FilterAPI {
     }
 
     public List<Car> getBrandNewCars() {
-        return cars.stream().filter(car -> car.IsBrandNew() == true).collect(toList());
+        return cars.stream().filter(car -> car.IsBrandNew()).collect(toList());
     }
 
     public List<Car> getUSCars() {
