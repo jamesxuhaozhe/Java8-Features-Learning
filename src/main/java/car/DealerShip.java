@@ -21,6 +21,7 @@ public class DealerShip {
     public List<Car> getInventory() {
         return inventory;
     }
+
     private void fillInventory() {
         Car car1 = new Car("Honda", "Japan", "Accord", "Black", "Sedan", 1001, 2014, true, true);
         Car car2 = new Car("Toyota", "Japan", "Camry", "White", "Sedan", 1002, 2014, true, true);

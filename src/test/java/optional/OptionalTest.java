@@ -15,4 +15,6 @@ public class OptionalTest {
         Assert.assertEquals(Integer.valueOf(1), Optional.of(1).get());
         Assert.assertEquals(Integer.valueOf(1), Optional.of(1).orElse(2));
     }
+
+
 }
