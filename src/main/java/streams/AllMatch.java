@@ -14,7 +14,7 @@ public class AllMatch {
      * Return true if all the dealership cars are foreign made.
      */
     public static boolean areTheyAllForeignCars(final List<Car> cars) {
-        return cars.stream().allMatch(car -> car.isForeign());
+        return cars.stream().allMatch(Car::isForeign);
     }
 
     /**
@@ -28,7 +28,7 @@ public class AllMatch {
      * Return true if all the dealership cars are brand new.
      */
     public static boolean areTheyAllBrandNew(List<Car> cars) {
-        return cars.stream().allMatch(car -> car.IsBrandNew());
+        return cars.stream().allMatch(Car::IsBrandNew);
     }
 
     public static void main(final String[] args) {
