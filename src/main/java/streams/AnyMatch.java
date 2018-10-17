@@ -2,6 +2,7 @@ package streams;
 
 import car.Car;
 import car.DealerShip;
+import org.omg.CORBA.Any;
 
 import java.util.List;
 
@@ -9,38 +10,32 @@ import java.util.List;
  * Created by haozhexu on 1/27/16.
  */
 public class AnyMatch {
-    private List<Car> cars;
-
-    public AnyMatch(List<Car> cars) {
-        this.cars = cars;
-    }
 
     /**
      * Return true if there is any foreign made car.
      */
-    public boolean isThereAnyForeignCar() {
+    public static boolean isThereAnyForeignCar(List<Car> cars) {
         return cars.stream().anyMatch(Car::isForeign);
     }
 
     /**
      * Return true if there is any Japanese car.
      */
-    public boolean isThereAnyJapaneseCar() {
+    public static boolean isThereAnyJapaneseCar(List<Car> cars) {
         return cars.stream().anyMatch(car -> car.getCountry().equals("Japan"));
     }
 
     /**
      * Return true if there is any brand new car.
      */
-    public boolean isThereAnyBrandNewCar() {
+    public static boolean isThereAnyBrandNewCar(List<Car> cars) {
         return cars.stream().anyMatch(Car::IsBrandNew);
     }
 
     public static void main(final String[] args) {
         DealerShip dealerShip = new DealerShip();
-        AnyMatch anyMatch = new AnyMatch(dealerShip.getInventory());
-        System.out.println(anyMatch.isThereAnyForeignCar() + "\n");
-        System.out.println(anyMatch.isThereAnyJapaneseCar() + "\n");
-        System.out.println(anyMatch.isThereAnyBrandNewCar() + "\n");
+        System.out.println(AnyMatch.isThereAnyForeignCar(dealerShip.getInventory()) + "\n");
+        System.out.println(AnyMatch.isThereAnyJapaneseCar(dealerShip.getInventory()) + "\n");
+        System.out.println(AnyMatch.isThereAnyBrandNewCar(dealerShip.getInventory()) + "\n");
     }
 }
