@@ -106,13 +106,92 @@ public class ReflectionDemo {
             System.out.println(e.getMessage());
         }
 
+        // getField type
         try {
-            Field field = people.getClass().getField("name");
+            Field field = people.getClass().getDeclaredField("name");
             Object fieldType = field.getType();
-            System.out.println(fieldType);
+            System.out.println("Fiedl type: " + fieldType);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
+        //demo set private member field
+        try {
+            Field field = people.getClass().getDeclaredField("name");;
+            field.setAccessible(true);
+            field.set(people, "juju");
+            System.out.println(people.getName());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        //demo obtaining specific method
+        try {
+            Method method = People.class.getMethod("getName", null);
+            Object returnValue = method.invoke(people, null);
+            System.out.println("Return value is: " + returnValue);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        // demo get parameters type and return types
+        try {
+            Method method = People.class.getMethod("setName", String.class);
+            Arrays.stream(method.getParameterTypes()).forEach(System.out::println);
+            Class returnType = method.getReturnType();
+            System.out.println(returnType);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            Method[] methods = People.class.getMethods();
+            Arrays.stream(methods).forEach(method -> {
+                if (isGetter(method)) {
+                    System.out.println(method + "is a getter method");
+                }
+                if (isSetter(method)) {
+                    System.out.println(method + "is a setter method");
+                }});
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            Method method = People.class.getDeclaredMethod("getNamePrivate", null);
+            method.setAccessible(true);
+            Object returnValue = method.invoke(people, null);
+            System.out.println("Invoke its private method" + returnValue);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static boolean isGetter(Method method) {
+        if (!method.getName().startsWith("get")) {
+            return false;
+        }
+
+        if (method.getParameterTypes().length != 0) {
+            return false;
+        }
+
+        if (void.class.equals(method.getReturnType())) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private static boolean isSetter(Method method) {
+        if (!method.getName().startsWith("set")) {
+            return false;
+        }
+
+        if (method.getParameterTypes().length != 1) {
+            return false;
+        }
+
+        return true;
     }
 }

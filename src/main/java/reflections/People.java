@@ -85,4 +85,12 @@ public class People implements LiveBeing {
     public void eat() {
         //no-op
     }
+
+    private String getNamePrivate() {
+        return name;
+    }
+
+    private void setNamePrivate(final String name) {
+        this.name = name;
+    }
 }
