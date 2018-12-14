@@ -4,7 +4,7 @@ import java.lang.annotation.Annotation;
 import java.util.Arrays;
 
 public class AnnotationReflectDemo {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         Annotation[] annotations = House.class.getAnnotations();
 
         Arrays.stream(annotations).forEach(System.out::println);
